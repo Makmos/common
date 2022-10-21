@@ -1,3 +1,0 @@
-http://178.154.203.119/ - server LEMP
-http://158.160.1.20/ - server LAMP
-http://130.193.34.150/ - LB
