@@ -1,0 +1,7 @@
+FROM python:3.9-alpine
+RUN mkdir /app
+COPY web.py /app
+COPY web.conf /app/conf
+WORKDIR /app
+RUN pip install Flask && pip install psycopg2-binary --user
+CMD [ "python", "./web.py"]
