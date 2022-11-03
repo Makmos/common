@@ -1,0 +1,25 @@
+version: '3.9'
+
+services:
+    nginx:
+       image: nginx:latest
+       container_name: nginx
+       restart: unless-stopped
+       ports:
+           - 80:80
+       volumes:
+           - ./hosts:/etc/nginx/conf.d
+           - ./www:/var/www
+           - ./logs/nginx:/var/log/nginx
+       links:
+           - php
+
+    php:
+       build: .
+       volumes:
+            - ./www:/var/www
+       healthcheck:
+           test: ["CMD", "curl", "-f", "http://nginx"]
+           interval: 1s
+           timeout: 3s
+           retries: 30
