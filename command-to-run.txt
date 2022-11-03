@@ -1,1 +1,0 @@
-docker run -d -p 192.168.1.33:80:5000 --mount type=bind,src=/srv/app,dst=/srv/app 0fd179a77fab
