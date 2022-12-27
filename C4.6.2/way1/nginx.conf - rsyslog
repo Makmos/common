@@ -1,0 +1,36 @@
+template(name="all-json"
+         type="list"){
+     property(name="$!all-json")
+}
+
+if $programname == "nginx" then {
+
+action(type="mmnormalize"
+  rulebase="/opt/rsyslog/nginx-logs.rb"
+)
+
+# store the rule for matching the logs in /opt/rsyslog/nginx-logs.rb file
+
+# exclude the queue parameters if you dont want to use them.
+
+action(type="omelasticsearch"
+      template="all-json"
+      searchIndex="testing-logs"
+      searchType="logs"
+      server="192.168.46.130"
+      serverport="9200"
+      #uid="user"
+      #pwd="pass"
+      #bulkmode="on"
+      action.resumeretrycount="-1"
+      #queue.type="LinkedList"
+      #queue.highwatermark="40000"
+      #queue.spoolDirectory="/var/spool/rsyslog/queues"
+      #queue.filename="rsyslog-testing-logs"
+      #queue.lowwatermark="5000"
+      #queue.maxdiskspace="100m"
+      #queue.size="50000"
+      #queue.dequeuebatchsize="1000"
+      #queue.saveonshutdown="on"
+ )
+}
