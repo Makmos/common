@@ -1,0 +1,16 @@
+# Logs
+logs
+*.log
+
+# Thumbnails
+._*
+
+# docker-swarm infra
+packer_cache
+docker-swarm.box
+*.tfvars
+join.sh
+output-virtualbox-iso
+
+.terraform*
+terraform.tfstate*
